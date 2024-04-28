@@ -102,6 +102,8 @@ function registerValidSW(swUrl: string, config?: Config) {
               if (config && config.onSuccess) {
                 config.onSuccess(registration);
               }
+
+              window.location.reload();
             }
           }
         };
