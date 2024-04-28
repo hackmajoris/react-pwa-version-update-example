@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {useServiceWorker} from "./userServiceWorker";
 
 function App() {
 
-    useServiceWorker();
+    const { waitingWorker, showReload, reloadPage } = useServiceWorker();
+
+    useEffect(() => {
+        if (showReload && waitingWorker) {
+            console.log('service worker update');
+        }
+    }, [waitingWorker, showReload, reloadPage]);
 
     return (
         <div className="App">
@@ -13,7 +19,7 @@ function App() {
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>
                     Edit <code>src/App.tsx</code> and save to reload.
-                    Try  62
+                    Try  63
                 </p>
                 <a
                     className="App-link"
