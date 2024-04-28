@@ -20,7 +20,6 @@ function App() {
       console.log('service worker update waisting');
       setSnackbarMessage('A new version is available: exit the app to update');
       setSnackbarOpen(true);
-      refreshPage()
 
     }
   }, [waitingWorker, showReload, reloadPage]);
@@ -31,7 +30,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
-          Try 11
+          Try 12
         </p>
         <a
           className="App-link"
@@ -48,7 +47,7 @@ function App() {
           autoHideDuration={60000}
           message={snackbarMessage}
           action={
-            <Button color="secondary" size="small" onClick={reloadPage}>
+            <Button color="secondary" size="small" onClick={refreshPage}>
               Refresh
             </Button>
           }
