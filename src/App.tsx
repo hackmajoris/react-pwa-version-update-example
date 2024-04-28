@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import propTypes from 'prop-types';
@@ -6,30 +6,44 @@ import {useServiceWorker} from "./userServiceWorker";
 
 function App() {
 
-  useServiceWorker();
+    const { waitingWorker, showReload, reloadPage } = useServiceWorker();
+    useEffect(() => {
+        if (showReload && waitingWorker) {
+            console.log('service worker update waisting');
+        }
+    }, [waitingWorker, showReload, reloadPage]);
 
-  return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-            Try 28
-          </p>
-          <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+    return (
+        <div className="App">
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+                <p>
+                    Edit <code>src/App.tsx</code> and save to reload.
+                    Try 29
+                </p>
+                <a
+                    className="App-link"
+                    href="https://reactjs.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Learn React
+                </a>
+            </header>
 
-      </div>
-  );
+        </div>
+
+
+    );
 
 }
+
+// @ts-ignore
+App.propTypes = {
+    callback: propTypes.object
+};
+
+
 
 
 export default App;
