@@ -1,8 +1,25 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Snackbar } from '@mui/material';
+import propTypes from 'prop-types';
+// @ts-ignore
+function App({callback}) {
 
-function App() {
+
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState('');
+
+
+  React.useEffect(() => {
+    callback.onUpdate = () => {
+      console.log('service worker update waisting');
+      setSnackbarMessage('A new version is available: exit the app to update');
+      setSnackbarOpen(true);
+    };
+  }, []);
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -19,8 +36,27 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={60000}
+          message={snackbarMessage}
+          onClose={() => setSnackbarOpen(false)}
+      />
+
     </div>
+
+
   );
+
 }
+
+// @ts-ignore
+App.propTypes = {
+  callback: propTypes.object
+};
+
+
+
 
 export default App;
