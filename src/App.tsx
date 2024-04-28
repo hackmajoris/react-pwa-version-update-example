@@ -15,11 +15,11 @@ function App() {
 
     return (
         <div className="App">
-            <header className="App-header">
+            <header className="App-headerr">
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>
                     Edit <code>src/App.tsx</code> and save to reload.
-                    Try  43
+                    Try  44
                 </p>
                 <a
                     className="App-link"
