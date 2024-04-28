@@ -12,16 +12,30 @@ export const useServiceWorker = () => {
         // We want to run this code only if we detect a new service worker is
         // waiting to be activated.
         // Details about it: https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
-        if (registration && registration.waiting) {
+        // if (registration && registration.waiting) {
+        //     await registration.unregister();
+        //
+        //     // Makes Workbox call skipWaiting()
+        //     registration.waiting.postMessage({type: 'SKIP_WAITING'});
+        //     // Once the service worker is unregistered, we can reload the page to let
+        //     // the browser download a fresh copy of our app (invalidating the cache)
+        //     window.location.reload();
+        // }
+        // setShowReload(true);
+        // setWaitingWorker(registration.waiting);
+        if (registration?.waiting) {
             await registration.unregister();
-            // Makes Workbox call skipWaiting()
-            registration.waiting.postMessage({type: 'SKIP_WAITING'});
-            // Once the service worker is unregistered, we can reload the page to let
-            // the browser download a fresh copy of our app (invalidating the cache)
-            window.location.reload();
+            registration.waiting.addEventListener('statechange', (event) => {
+                const sw = event?.target as ServiceWorker;
+                if (sw.state === 'activated') {
+                    // Once the service worker is unregistered, we can reload the page to let
+                    // the browser download a fresh copy of our app (invalidating the cache)
+                    window.location.reload();
+                }
+            });
+            // Makes Workbox call skipWaiting() that will trigger upper listener
+            registration.waiting.postMessage({ type: 'SKIP_WAITING' });
         }
-        setShowReload(true);
-        setWaitingWorker(registration.waiting);
 
     }, []);
     // simply put, this tells the service
@@ -29,7 +43,7 @@ export const useServiceWorker = () => {
     const reloadPage = useCallback(() => {
         waitingWorker?.postMessage({ type: "SKIP_WAITING" });
         setShowReload(false);
-        window.location.reload();
+        // window.location.reload();
     }, [waitingWorker]);
     // register the service worker
     useEffect(() => {
