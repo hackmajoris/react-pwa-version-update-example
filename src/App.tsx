@@ -26,7 +26,7 @@ function App({callback}) {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
-          Try2
+          Try3
         </p>
         <a
           className="App-link"
