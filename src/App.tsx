@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Snackbar } from '@mui/material';
+import {Button, Snackbar} from '@mui/material';
 import propTypes from 'prop-types';
 import {useServiceWorker} from "./userServiceWorker";
 
@@ -31,7 +31,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
-          Try 9
+          Try 10
         </p>
         <a
           className="App-link"
@@ -47,6 +47,11 @@ function App() {
           open={snackbarOpen}
           autoHideDuration={60000}
           message={snackbarMessage}
+          action={
+            <Button color="secondary" size="small" onClick={reloadPage}>
+              Refresh
+            </Button>
+          }
           onClose={() => setSnackbarOpen(false)}
       />
 
