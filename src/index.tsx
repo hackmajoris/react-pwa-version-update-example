@@ -19,14 +19,6 @@ root.render(
 // Learn more about service workers: https://cra.link/PWA
 serviceWorkerRegistration.register();
 
-serviceWorkerRegistration.register({
-    onUpdate: () => {
-        //if(callback.onUpdate){
-            // @ts-ignore
-            callback?.onUpdate(); // delegating the callback
-       //
-    }
-});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
