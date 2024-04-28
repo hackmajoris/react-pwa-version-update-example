@@ -6,11 +6,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 
-const callback: { onUpdate: () => void } = {
-    onUpdate: () => {
-        console.log('rest')
-    }
-};
+const callback = {}
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -23,13 +19,16 @@ root.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
-serviceWorkerRegistration.unregister();
+serviceWorkerRegistration.register();
+
+
 
 serviceWorkerRegistration.register({
     onUpdate: () => {
-        if(callback.onUpdate){
-            callback.onUpdate(); // delegating the callback
-        }
+        //if(callback.onUpdate){
+            // @ts-ignore
+            callback?.onUpdate(); // delegating the callback
+       //
     }
 });
 
