@@ -20,6 +20,8 @@ function App() {
       console.log('service worker update waisting');
       setSnackbarMessage('A new version is available: exit the app to update');
       setSnackbarOpen(true);
+      refreshPage()
+
     }
   }, [waitingWorker, showReload, reloadPage]);
 
@@ -29,7 +31,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
-          Try8
+          Try 9
         </p>
         <a
           className="App-link"
@@ -47,12 +49,6 @@ function App() {
           message={snackbarMessage}
           onClose={() => setSnackbarOpen(false)}
       />
-      {snackbarOpen && (
-          <div>
-            <button onClick={refreshPage}>Click to reload!</button>
-          </div>
-      )}
-
 
     </div>
 
