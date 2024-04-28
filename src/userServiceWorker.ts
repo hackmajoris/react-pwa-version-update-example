@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 export const useServiceWorker = () => {
     const [waitingWorker, setWaitingWorker] = useState<ServiceWorker | null>(null);
 
@@ -20,7 +21,7 @@ export const useServiceWorker = () => {
             // the browser download a fresh copy of our app (invalidating the cache)
             window.location.reload();
         }
-        setShowReload(true);
+
         setWaitingWorker(registration.waiting);
 
     }, []);
@@ -28,7 +29,6 @@ export const useServiceWorker = () => {
     // worker to skip the waiting phase and then reloads the page
     const reloadPage = useCallback(() => {
         waitingWorker?.postMessage({ type: "SKIP_WAITING" });
-        setShowReload(false);
         window.location.reload();
     }, [waitingWorker]);
     // register the service worker
