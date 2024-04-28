@@ -9,7 +9,7 @@ function App() {
     const { waitingWorker, showReload, reloadPage } = useServiceWorker();
     useEffect(() => {
         if (showReload && waitingWorker) {
-            console.log('service worker update waisting');
+            console.log('service worker update');
         }
     }, [waitingWorker, showReload, reloadPage]);
 
@@ -19,7 +19,7 @@ function App() {
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>
                     Edit <code>src/App.tsx</code> and save to reload.
-                    Try  34
+                    Try  36
                 </p>
                 <a
                     className="App-link"
