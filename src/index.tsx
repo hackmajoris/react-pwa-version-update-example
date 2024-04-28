@@ -5,14 +5,12 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-
-const callback = {}
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-      <App callback={callback}/> {/* passing the callback */}
+      <App/> {/* passing the callback */}
   </React.StrictMode>
 );
 
@@ -20,8 +18,6 @@ root.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
 serviceWorkerRegistration.register();
-
-
 
 serviceWorkerRegistration.register({
     onUpdate: () => {
