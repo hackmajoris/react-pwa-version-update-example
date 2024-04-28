@@ -10,6 +10,9 @@ function App() {
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState('');
 
+  function refreshPage() {
+    window.location.reload();
+  }
   const { waitingWorker, showReload, reloadPage } = useServiceWorker();
 // decides when to show the toast
   useEffect(() => {
@@ -26,7 +29,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
-          Try7
+          Try8
         </p>
         <a
           className="App-link"
@@ -44,6 +47,12 @@ function App() {
           message={snackbarMessage}
           onClose={() => setSnackbarOpen(false)}
       />
+      {snackbarOpen && (
+          <div>
+            <button onClick={refreshPage}>Click to reload!</button>
+          </div>
+      )}
+
 
     </div>
 
