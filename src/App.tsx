@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import propTypes from 'prop-types';
@@ -6,12 +6,7 @@ import {useServiceWorker} from "./userServiceWorker";
 
 function App() {
 
-  const { waitingWorker, showReload, reloadPage } = useServiceWorker();
-  useEffect(() => {
-    if (showReload && waitingWorker) {
-      console.log('service worker update waisting');
-    }
-  }, [waitingWorker, showReload, reloadPage]);
+  useServiceWorker();
 
   return (
       <div className="App">
@@ -19,7 +14,7 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
-            Try 27
+            Try 28
           </p>
           <a
               className="App-link"
@@ -32,18 +27,9 @@ function App() {
         </header>
 
       </div>
-
-
   );
 
 }
-
-// @ts-ignore
-App.propTypes = {
-  callback: propTypes.object
-};
-
-
 
 
 export default App;
