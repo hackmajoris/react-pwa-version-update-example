@@ -16,6 +16,7 @@ function App() {
   const { waitingWorker, showReload, reloadPage } = useServiceWorker();
 // decides when to show the toast
   useEffect(() => {
+      console.log('rteeeee')
     if (showReload && waitingWorker) {
       console.log('service worker update waisting');
       setSnackbarMessage('A new version is available: exit the app to update');
@@ -29,7 +30,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
-          Try2
+          Try8
         </p>
         <a
           className="App-link"
